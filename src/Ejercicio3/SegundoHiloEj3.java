@@ -1,8 +1,8 @@
 package Ejercicio3;
 
-public class SegundoHilo implements Runnable{
+public class SegundoHiloEj3 implements Runnable{
     public void ejercicio3(){
-        Thread t2 = new Thread(new SegundoHilo());
+        Thread t2 = new Thread(new SegundoHiloEj3());
         t2.start();
     }
 

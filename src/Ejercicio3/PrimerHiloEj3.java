@@ -1,12 +1,11 @@
 package Ejercicio3;
 
-public class PrimerHilo implements Runnable{
+public class PrimerHiloEj3 implements Runnable{
 
     Thread t1;
     public void ejercicio3(){
-        t1 = new Thread(new PrimerHilo());
+        t1 = new Thread(new PrimerHiloEj3());
         t1.start();
-
     }
     public void pararHilo1(){
         try {
@@ -19,6 +18,7 @@ public class PrimerHilo implements Runnable{
 
     @Override
     public void run() {
+        System.out.println(Thread.currentThread().getName());
         for (int i = 0; i < 15; i++) {
             System.out.print("Hola");
             try {
