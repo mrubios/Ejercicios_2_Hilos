@@ -1,7 +1,5 @@
 package Ejercicio4;
 
-import Ejercicio3.SegundoHiloEj3;
-
 import java.util.ArrayList;
 import java.util.List;
 
