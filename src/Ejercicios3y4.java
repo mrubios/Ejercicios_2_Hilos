@@ -3,8 +3,6 @@ import Ejercicio3.SegundoHiloEj3;
 import Ejercicio4.PrimerHiloEj4;
 
 import java.util.Scanner;
-
-import static Ejercicio4.PrimerHiloEj4.acabar;
 import static Ejercicio4.PrimerHiloEj4.salir;
 
 
@@ -19,10 +17,10 @@ public class Ejercicios3y4 implements Runnable {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("EJERCICIO 4");
+
         System.out.println("¿Cuanto tiempo quieres esperar?");
         numero = sc.nextInt();
         sc.nextLine();
-
 
         Thread hilo1 = new Thread(new Ejercicios3y4());
         hilo1.start();
@@ -32,11 +30,10 @@ public class Ejercicios3y4 implements Runnable {
 
         try {
             Thread.sleep(numero);
-            acabar = false;
+            hilo2.interrupt();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
         try {
             hilo1.join();
             hilo2.join();
@@ -70,6 +67,7 @@ public class Ejercicios3y4 implements Runnable {
         try {
             while (salir){
                 Thread.sleep(1000);
+                if (!salir)break;
                 System.out.println(Thread.currentThread().getName() +  " Esperando");
             }
         } catch (InterruptedException e) {

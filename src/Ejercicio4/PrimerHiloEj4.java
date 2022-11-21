@@ -6,27 +6,23 @@ import java.util.List;
 public class PrimerHiloEj4 implements Runnable {
     List<String> mensajes = new ArrayList<>();
     public static boolean salir = true;
-    public static boolean acabar = true;
+    private int i;
 
     @Override
     public void run() {
         anadirMensajes();
-
-        for (int i = 0; i < mensajes.stream().count(); i++) {
-            if (acabar){
-                if (i!= 0){
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+        try {
+        for (i = 0; i < mensajes.stream().count(); i++) {
                 System.out.println(mensajes.get(i));
-            }else{
+                        Thread.sleep(4000);
+        }
+        } catch (InterruptedException e) {
+            for (i = i+1; i < mensajes.stream().count(); i++) {
                 System.out.println(mensajes.get(i));
             }
+        }finally {
+            salir = false;
         }
-        salir = false;
 
 
     }
