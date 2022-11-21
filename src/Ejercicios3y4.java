@@ -1,6 +1,8 @@
 import Ejercicio3.PrimerHiloEj3;
 import Ejercicio3.SegundoHiloEj3;
 import Ejercicio4.PrimerHiloEj4;
+import Ejercicio5.Hilo;
+import Ejercicio5.Saldo;
 
 import java.util.Scanner;
 import static Ejercicio4.PrimerHiloEj4.salir;
@@ -8,8 +10,35 @@ import static Ejercicio4.PrimerHiloEj4.salir;
 
 public class Ejercicios3y4 implements Runnable {
     public static void main(String[] args) {
-        //ejercicio3();
+        ejercicio3();
         ejercicio4();
+        ejercicio5();
+
+    }
+
+    private static void ejercicio5() {
+
+        System.out.println("EJERCICIO 5");
+
+        Saldo saldo = new Saldo(10);
+
+        Thread hilo1 = new Thread(new Hilo(saldo, 1, 2.5));
+        Thread hilo2 = new Thread(new Hilo(saldo, 2, 5));
+        Thread hilo3 = new Thread(new Hilo(saldo, 3, 12.5));
+
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
+
+        try {
+            hilo1.join();
+            hilo2.join();
+            hilo3.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Fin del ejercicio 5");
 
     }
 

@@ -18,7 +18,6 @@ public class PrimerHiloEj3 implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName());
         for (int i = 0; i < 15; i++) {
             System.out.print("Hola");
             try {
