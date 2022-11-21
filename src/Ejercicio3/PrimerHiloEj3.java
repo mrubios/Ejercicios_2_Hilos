@@ -1,21 +1,6 @@
 package Ejercicio3;
 
 public class PrimerHiloEj3 implements Runnable{
-
-    Thread t1;
-    public void ejercicio3(){
-        t1 = new Thread(new PrimerHiloEj3());
-        t1.start();
-    }
-    public void pararHilo1(){
-        try {
-            Thread.sleep(5000);
-            t1.interrupt();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void run() {
         for (int i = 0; i < 15; i++) {

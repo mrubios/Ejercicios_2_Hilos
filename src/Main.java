@@ -8,12 +8,26 @@ import java.util.Scanner;
 import static Ejercicio4.PrimerHiloEj4.salir;
 
 
-public class Ejercicios3y4 implements Runnable {
+public class Main implements Runnable {
     public static void main(String[] args) {
-        ejercicio3();
-        ejercicio4();
-        ejercicio5();
 
+        System.out.println("¿Qué ejercicio quieres ejecutar?");
+        System.out.println("1- Ejercicio 3");
+        System.out.println("2- Ejercicio 4");
+        System.out.println("3- Ejercicio 5");
+        Scanner sc = new Scanner(System.in);
+        int n1 = sc.nextInt();
+        sc.nextLine();
+        switch (n1){
+            case 1: ejercicio3();
+                break;
+            case 2: ejercicio4();
+                break;
+            case 3: ejercicio5();
+                break;
+            default: break;
+
+        }
     }
 
     private static void ejercicio5() {
@@ -51,7 +65,7 @@ public class Ejercicios3y4 implements Runnable {
         numero = sc.nextInt();
         sc.nextLine();
 
-        Thread hilo1 = new Thread(new Ejercicios3y4());
+        Thread hilo1 = new Thread(new Main());
         hilo1.start();
 
         Thread hilo2 = new Thread(new PrimerHiloEj4());
@@ -81,13 +95,18 @@ public class Ejercicios3y4 implements Runnable {
         System.out.println("EJERCICIO 3");
         System.out.println();
 
-        PrimerHiloEj3 hilo1 = new PrimerHiloEj3();
-        hilo1.ejercicio3();
+        Thread t1 = new Thread(new PrimerHiloEj3());
+        t1.start();
 
-        SegundoHiloEj3 hilo2 = new SegundoHiloEj3();
-        hilo2.ejercicio3();
+        Thread t2 = new Thread(new SegundoHiloEj3());
+        t2.start();
 
-        hilo1.pararHilo1();
+        try {
+            Thread.sleep(5000);
+            t1.interrupt();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
